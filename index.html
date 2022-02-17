@@ -4,9 +4,56 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Document</title>
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="./src/style.css" />
+   <title>Snake-game</title>
 </head>
 <body>
+   <header class="header">
+      <div class="container container-header">
+         <h1>SNAKE-GAME</h1>
+         <p class="score">Score: <span id="score_value">0</span></p>
+      </div>
+   </header>
    
+   <main> 
+      <div class="container">
+         <div class="game-board"></div>
+      </div>
+   </main>
+
+   <div class="container noselect">
+      <div class="wrapper">
+         <button id="replay">
+            <i class="fas fa-play"></i>
+            RESTART
+         </button>
+         <div id="canvas">
+      </div>
+         <div id="ui">
+            <h2>SCORE
+            </h2>
+            <span id="score">00</span>
+         </div>
+      </div>
+   </div>
+
+   <footer class="footer">
+      <div class="container foot">
+         <div class="year-author">
+            <span>©</span>
+            <span>2022</span>
+            <span><a class="footer__link" href="https://github.com/Ekaterina1994" target="_blank">github</a></span>
+         </div>
+         <div class="school-link">
+            <a class="footer__link" href="https://rs.school/js-stage0/" target="_blank">
+               <svg class="icon icon-rss">
+                  <use xlink:href="./src/assets/sprite.svg#rss"></use>
+               </svg>
+            </a>
+         </div>
+      </div>
+   </footer>
+<script type="module" src="./src/index.js"></script>
 </body>
 </html>
