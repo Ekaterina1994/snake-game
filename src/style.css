@@ -179,6 +179,10 @@ body {
    border: 2px solid var(--color-black);
 }
 
+.back-to-menu2 {
+   margin-bottom: 20px;
+}
+
 .game-over {
    display: none;
    flex-direction: column;
@@ -207,7 +211,7 @@ body {
    background-color: var(--color-gold);
 }
 .score-title {
-   padding-top: 30px;
+   padding-top: 20px;
    padding-bottom: 0;
    font-size: 1.6rem;
    font-weight: 700;

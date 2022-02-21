@@ -196,6 +196,7 @@ function startGame() {
    field.classList.remove('hide');
    field.classList.add('show');
    interval = setInterval(move, 300);
+   reset();
 }
 
 // сохранение score
@@ -230,6 +231,21 @@ function changeScreen() {
    results.classList.add('hide');
    sc.classList.remove('show');
 }
+
+//local storage
+
+const obj = {
+   score: `${score}`,
+}
+
+localStorage.setItem('number', JSON.stringify(obj));
+
+const ages = localStorage.getItem('number');
+const number = JSON.parse(ages);
+console.log(number.age);
+
+
+
 
 
 
