@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="./src/style.css" />
+   <title>Snake-game</title>
+</head>
+<body>
+   <header class="header">
+      <div class="container container-header">
+         <h1>SNAKE-GAME</h1>
+         <p class="score">Score: <span id="score_value">0</span></p>
+      </div>
+   </header>
+   <main>
+      <div class="buttons">
+         <button class="new-game btn">New Game</button>
+         <button class="records btn">Records</button>
+      </div>
+      <div class="game-over">
+         <div class="game-over-info">Game over! Your score: <span id="score_val">0</span></div>
+         <button class="back-to-menu btn">Back to menu</button>
+      </div>
+      <div class="records-score">
+            <p class="score-title">GAME SCORE:</p>
+            <p class="score-text" data-item="1"> </p>
+            <p class="score-text" data-item="2"> </p>
+            <p class="score-text" data-item="3"> </p>
+            <p class="score-text" data-item="4"> </p>
+            <p class="score-text" data-item="5"> </p>
+            <p class="score-text" data-item="6"> </p>
+            <p class="score-text" data-item="7"> </p>
+            <p class="score-text" data-item="8"> </p>
+            <p class="score-text" data-item="9"> </p>
+            <p class="score-text" data-item="10"> </p>
+            <button class="back-to-menu back-to-menu2 btn">Back to menu</button>
+      </div>
+   </main>
+   <footer class="footer">
+      <div class="container foot">
+         <div class="year-author">
+            <span>©</span>
+            <span>2022</span>
+            <span><a class="footer__link" href="https://github.com/Ekaterina1994" target="_blank">github</a></span>
+         </div>
+         <div class="school-link">
+            <a class="footer__link" href="https://rs.school/js-stage0/" target="_blank">
+               <svg class="icon icon-rss">
+                  <use xlink:href="assets/svg/sprite.svg#rss"></use>
+               </svg>
+            </a>
+         </div>
+      </div>
+   </footer>
+<script src="./src/index.js"></script>
+</body>
+</html>
