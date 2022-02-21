@@ -15,29 +15,30 @@
          <p class="score">Score: <span id="score_value">0</span></p>
       </div>
    </header>
-   
-   <main> 
-      <div class="container">
-         <div class="game-board"></div>
+   <main>
+      <div class="buttons">
+         <button class="new-game btn">New Game</button>
+         <button class="records btn">Records</button>
+      </div>
+      <div class="game-over">
+         <div class="game-over-info">Game over! Your score: <span id="score_val">0</span></div>
+         <button class="back-to-menu btn">Back to menu</button>
+      </div>
+      <div class="records-score">
+            <p class="score-title">GAME SCORE:</p>
+            <p class="score-text" data-item="1"> </p>
+            <p class="score-text" data-item="2"> </p>
+            <p class="score-text" data-item="3"> </p>
+            <p class="score-text" data-item="4"> </p>
+            <p class="score-text" data-item="5"> </p>
+            <p class="score-text" data-item="6"> </p>
+            <p class="score-text" data-item="7"> </p>
+            <p class="score-text" data-item="8"> </p>
+            <p class="score-text" data-item="9"> </p>
+            <p class="score-text" data-item="10"> </p>
+            <button class="back-to-menu back-to-menu2 btn">Back to menu</button>
       </div>
    </main>
-
-   <div class="container noselect">
-      <div class="wrapper">
-         <button id="replay">
-            <i class="fas fa-play"></i>
-            RESTART
-         </button>
-         <div id="canvas">
-      </div>
-         <div id="ui">
-            <h2>SCORE
-            </h2>
-            <span id="score">00</span>
-         </div>
-      </div>
-   </div>
-
    <footer class="footer">
       <div class="container foot">
          <div class="year-author">
@@ -48,12 +49,12 @@
          <div class="school-link">
             <a class="footer__link" href="https://rs.school/js-stage0/" target="_blank">
                <svg class="icon icon-rss">
-                  <use xlink:href="./src/assets/sprite.svg#rss"></use>
+                  <use xlink:href="assets/svg/sprite.svg#rss"></use>
                </svg>
             </a>
          </div>
       </div>
    </footer>
-<script type="module" src="./src/index.js"></script>
+<script src="./src/index.js"></script>
 </body>
 </html>
