@@ -1,5 +1,6 @@
 // import css  from './style.css';
 
+
 const newGame = document.querySelector('.new-game');
 const records = document.querySelector('.records');
 const buttons = document.querySelector('.buttons');
@@ -71,8 +72,9 @@ let steps = false;
 
 let dom_score = document.querySelector("#score_value");
 let dom_score2 = document.querySelector('#score_val');
-let score = 00;
+let currentScore = 00;
 let maxScore = window.localStorage.getItem("maxScore") || undefined;
+const scoreHistory = [];
 
 let isPlay = false;
 
@@ -82,8 +84,41 @@ function playAudio() {
    audio.src = './assets/audio/snakeAttack.mp3';
    audio.currentTime = 0;
    audio.play();
-  
 }
+
+//local storage
+
+// const obj = {
+//    score: `${score}`,
+// }
+
+// localStorage.setItem('number', JSON.stringify(obj));
+
+// const ages = localStorage.getItem('number');
+// const number = JSON.parse(ages);
+// console.log(number.score);
+
+const SCORE = 'score';
+
+function saveScoreToStorage(score) {
+   scoreHistory[0] = score;
+   localStorage.setItem(SCORE, JSON.stringify(scoreHistory));
+}
+
+function getHistoryFromStorage() {
+   return localStorage.getItem(SCORE);
+}
+
+function shiftHistory() {
+   if (scoreHistory.length > 10) {
+      scoreHistory.pop();
+      scoreHistory.unshift(0);
+   } else {
+      scoreHistory.unshift(0);
+   }
+}
+
+///
 
 function move() {
    let snakeCoordinates = [snakeBody[0].getAttribute('posX'), snakeBody[0].getAttribute('posY')];
@@ -124,13 +159,14 @@ function move() {
       snakeBody.push(document.querySelector('[posX = "' + a + '"][posY = "' + b + '"]'));
       createMouse();
       incrementScore();
+      saveScoreToStorage(currentScore);
       playAudio();
    }
 
    function incrementScore() {
-      score++;
-      dom_score.innerText = score.toString().padStart(2, "0");
-      dom_score2.innerText = score.toString().padStart(2, "0");
+      currentScore++;
+      dom_score.innerText = currentScore.toString().padStart(2, "0");
+      dom_score2.innerText = currentScore.toString().padStart(2, "0");
    }
 
 
@@ -142,7 +178,7 @@ function move() {
          snakeBody[i].classList.remove('snakeBody');
       }
       snakeBody[0].classList.remove('head');
-      dom_score2.innerText = score.toString().padStart(2, "0");
+      dom_score2.innerText = currentScore.toString().padStart(2, "0");
       snakeBody = [document.querySelector('[posX = "' + coordinates[0] + '"][posY = "' + coordinates[1] + '"]'), document.querySelector('[posX = "' + (coordinates[0] - 1) + '"][posY = "' + coordinates[1] + '"]'), document.querySelector('[posX = "' + (coordinates[0] - 2) + '"][posY = "' + coordinates[1] + '"]')];
       clearInterval(interval);
    }
@@ -168,7 +204,7 @@ window.addEventListener('keydown', function(e) {
       } else if (e.keyCode == 39 && direction != 'left') {
          direction = 'right';
          steps = false;
-      } else if (e.keyCode == 40 && direction != 'up') {
+      } else if (e.key == 'ArrowDown' && direction != 'up') {
          direction = 'down';
          steps = false;
       }
@@ -177,15 +213,15 @@ window.addEventListener('keydown', function(e) {
 
 
 function gameOver() {
-   maxScore ? null : (maxScore = score);
-   score > maxScore ? (maxScore = score) : null;
+   maxScore ? null : (maxScore = currentScore);
+   currentScore > maxScore ? (maxScore = currentScore) : null;
    window.localStorage.setItem("maxScore", maxScore);
 }
 
 function reset() {
   dom_score.innerText = "00";
   dom_score2.innerText = "00";
-  score = "00";
+  currentScore = "00";
 }
 
 
@@ -197,6 +233,8 @@ function startGame() {
    field.classList.add('show');
    interval = setInterval(move, 300);
    reset();
+   shiftHistory();
+   countScore++;
 }
 
 // сохранение score
@@ -215,41 +253,33 @@ records.addEventListener('click', showRecords);
 function showRecords() {
    buttons.classList.add('hide');
    sc.classList.add('show');
-   saveScore(dom_score.innerText = score.toString().padStart(2, "0"));
+   //saveScore(dom_score.innerText = currentScore.toString().padStart(2, "0"));
+   renderTableWithScoreHistory(JSON.parse(getHistoryFromStorage()));
 }
 
 
 
 const menu = document.querySelector('.back-to-menu');
-menu.addEventListener('click', changeScreen);
+menu.addEventListener('click', renderMenu);
 const menu2 = document.querySelector('.back-to-menu2');
-menu2.addEventListener('click', changeScreen);
+menu2.addEventListener('click', renderMenu);
 
-function changeScreen() {
+function renderMenu() {
    records.classList.remove('hide');
    buttons.classList.remove('hide');
    results.classList.add('hide');
    sc.classList.remove('show');
 }
 
-//local storage
+const scoreTitle = document.querySelector('.score-title');
 
-const obj = {
-   score: `${score}`,
+// scoreHistory = array of numbers
+function renderTableWithScoreHistory(scoreHistory) {
+   const renderLine = (score) => `<div>Game ${countScore}: ${score} scores</div></br>`;
+   scoreTitle.insertAdjacentHTML(
+      'afterend',
+      scoreHistory.reduce((accum, currentScore) => accum + renderLine(currentScore), ''));
 }
-
-localStorage.setItem('number', JSON.stringify(obj));
-
-const ages = localStorage.getItem('number');
-const number = JSON.parse(ages);
-console.log(number.age);
-
-
-
-
-
-
-
 
 
 
